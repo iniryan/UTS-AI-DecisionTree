@@ -8,8 +8,10 @@ import os
 import numpy as np
 import cv2
 from sklearn.model_selection import train_test_split
+from sklearn.decomposition import PCA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, mean_squared_error
 from keras.applications.vgg16 import VGG16
 from keras.applications.vgg16 import preprocess_input
 
@@ -62,6 +64,21 @@ X_test_features = vgg_model.predict(X_test)
 X_train_features = X_train_features.reshape(X_train_features.shape[0], -1)
 X_test_features = X_test_features.reshape(X_test_features.shape[0], -1)
 
+# Apply PCA or LDA for feature reduction
+# Uncomment one of the following sections based on your choice
+
+# # Apply PCA for feature reduction
+# pca = PCA(n_components=100)
+# pca.fit(X_train_features)
+# X_train_features = pca.transform(X_train_features)
+# X_test_features = pca.transform(X_test_features)
+
+# Apply LDA for feature reduction
+lda = LinearDiscriminantAnalysis(n_components=100)
+lda.fit(X_train_features, y_train)
+X_train_features = lda.transform(X_train_features)
+X_test_features = lda.transform(X_test_features)
+
 # Create a Decision Tree classifier
 classifier = DecisionTreeClassifier()
 
@@ -73,4 +90,13 @@ y_pred = classifier.predict(X_test_features)
 
 # Calculate the accuracy of the classifier
 accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average='macro')
+recall = recall_score(y_test, y_pred, average='macro')
+f1 = f1_score(y_test, y_pred, average='macro')
+mse = mean_squared_error(y_test, y_pred)
+
 print("Accuracy:", accuracy)
+print("Precision:", precision)
+print("Recall:", recall)
+print("F1-Score:", f1)
+print("Mean Squared Error:", mse)
