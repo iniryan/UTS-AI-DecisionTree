@@ -20,8 +20,7 @@ image_dir = 'animals'
 
 # Set the target labels/classes
 classes = ['antelope', 'bat', 'bee', 'bison', 'cat', 'crow', 'dog', 'elephant', 
-           'lion', 'orangutan', 'panda', 'penguin', 'pigeon', 'snake', 'tiger',
-           'whale', 'zebra']
+           'lion', 'orangutan', 'panda', 'penguin', 'pigeon', 'snake', 'tiger']
 
 # Read the images and extract features
 X = []
