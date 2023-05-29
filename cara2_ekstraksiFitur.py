@@ -1,3 +1,9 @@
+# Anggota Kelompok:
+# 1. RYAN ADI SAPUTRA (1201210006)
+# 2. SULTHONY AKBAR RIZKI PAMBUDI (1201210014)
+# 3. YAFI YOGA ABID PRAMONO (1201210022)
+
+# Import library
 import os
 import numpy as np
 import cv2
@@ -8,7 +14,9 @@ from keras.applications.vgg16 import preprocess_input
 image_dir = 'animals'
 
 # Set the target labels/classes
-classes = ['antelope', 'badger', 'bat', 'bear', 'bee', 'beetle', 'bison']
+classes = ['antelope', 'bat', 'bee', 'bison', 'cat', 'crow', 'dog', 'elephant', 
+           'lion', 'orangutan', 'panda', 'penguin', 'pigeon', 'snake', 'tiger',
+           'whale', 'zebra']
 
 # Read the images and extract features
 X = []

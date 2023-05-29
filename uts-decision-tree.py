@@ -1,3 +1,9 @@
+# Anggota Kelompok:
+# 1. RYAN ADI SAPUTRA (1201210006)
+# 2. SULTHONY AKBAR RIZKI PAMBUDI (1201210014)
+# 3. YAFI YOGA ABID PRAMONO (1201210022)
+
+# Import library
 import os
 import numpy as np
 import cv2
@@ -13,7 +19,9 @@ from keras.applications.vgg16 import preprocess_input
 image_dir = 'animals'
 
 # Set the target labels/classes
-classes = ['antelope', 'badger', 'bat', 'bear', 'bee', 'beetle', 'bison']
+classes = ['antelope', 'bat', 'bee', 'bison', 'cat', 'crow', 'dog', 'elephant', 
+           'lion', 'orangutan', 'panda', 'penguin', 'pigeon', 'snake', 'tiger',
+           'whale', 'zebra']
 
 # Read the images and extract features
 X = []
@@ -24,8 +32,10 @@ for class_label in classes:
     for image_file in os.listdir(class_dir):
         image_path = os.path.join(class_dir, image_file)
         image = cv2.imread(image_path)
-        image = cv2.resize(image, (224, 224))  # Resize the image to the input size of the CNN model
-        image = preprocess_input(image)  # Preprocess the image according to the requirements of the CNN model
+        # Resize the image to the input size of the CNN model
+        image = cv2.resize(image, (224, 224))  
+        # Preprocess the image according to the requirements of the CNN model
+        image = preprocess_input(image)  
         X.append(image)
         y.append(class_label)
 
@@ -73,8 +83,8 @@ f1 = f1_score(y_test, y_pred, average='macro')
 mse = mean_squared_error(y_test.astype(float), y_pred.astype(float))
 
 # Print the evaluation metrics
-print("Accuracy:", accuracy)
-print("Precision:", precision)
-print("Recall:", recall)
-print("F1-Score:", f1)
+print("Accuracy: {:.2%}".format(accuracy))
+print("Precision: {:.2%}".format(precision))
+print("Recall: {:.2%}".format(recall))
+print("F1-Score: {:.2%}".format(f1))
 print("Mean Squared Error:", mse)

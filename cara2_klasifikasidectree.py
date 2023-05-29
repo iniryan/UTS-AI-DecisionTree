@@ -1,3 +1,9 @@
+# Anggota Kelompok:
+# 1. RYAN ADI SAPUTRA (1201210006)
+# 2. SULTHONY AKBAR RIZKI PAMBUDI (1201210014)
+# 3. YAFI YOGA ABID PRAMONO (1201210022)
+
+# Import library
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
@@ -40,8 +46,8 @@ f1 = f1_score(y_test, y_pred, average='macro')
 mse = mean_squared_error(y_test_numeric, y_pred_numeric)
 
 # Print the evaluation metrics
-print("Accuracy:", accuracy)
-print("Precision:", precision)
-print("Recall:", recall)
-print("F1-Score:", f1)
+print("Accuracy: {:.2%}".format(accuracy))
+print("Precision: {:.2%}".format(precision))
+print("Recall: {:.2%}".format(recall))
+print("F1-Score: {:.2%}".format(f1))
 print("Mean Squared Error:", mse)
